@@ -1,0 +1,115 @@
+                                              product                                              | product_code 
+---------------------------------------------------------------------------------------------------+--------------
+ ZINC                                                                                              | 54
+ ZARBEE'S NATURALS CHILDREN'S SLEEP WITH MELATONIN SUPPLEMENT & COUGH SYRUP W/DARK HONEY NIGHTTIME | 54
+ WEN CLEANSING CONDITIONER                                                                         | 53
+ VITAMIN D                                                                                         | 54
+ VITAMIN D                                                                                         | 
+(5 rows)
+
+ event_id |                        comma_delimited_terms                        
+----------+---------------------------------------------------------------------
+        1 | NAUSEA
+        2 | VOMITING
+        3 | SLEEP DISORDER,SALIVARY GLAND DISORDER,ANXIETY
+        4 | BURNING SENSATION,TENDERNESS,PAIN,MUCOSAL ULCERATION,CAUSTIC INJURY
+        5 | HYPERSENSITIVITY,DYSGEUSIA
+(5 rows)
+
+ event_date | report_id |                        product                        
+------------+-----------+-------------------------------------------------------
+ 2013-09-29 | 172989    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172990    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172991    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172992    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172993    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172994    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172995    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 172996    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-29 | 173006    | RESER'S STONEMILL KITCHENS COUNTRY RED POTATO SALAD
+ 2013-09-12 | 173016    | MOVE FREE
+ 2013-09-13 | 173073    | NEW ZEALAND GRANNY SMITH APPLES
+ 2013-09-26 | 173122    | OCUVITE EYE VITAMIN & MINERAL SUPPLEMENT & LUTEIN
+ 2013-09-01 | 173247    | WEN BY CHAZ DEAN
+ 2013-09-01 | 173291    | BEE SWEET SPOT
+ 2013-09-03 | 173427    | GERBER YOGURT BLENDS APPLE CINAMMON WITH WHOLE GRAINS
+ 2013-09-29 | 173503    | WOMENS ULTRA MEGA ENERGY AND METABOLISM
+ 2013-09-29 | 173503    | GNC TOTAL LEAN CLA SOFT CHEW
+ 2013-09-29 | 173503    | VITAMIN B-12 SOFT CHEW
+ 2013-09-01 | 173648    | USP LABS OXYELITE PRO
+ 2013-09-07 | 173712    | VITAMIN D-3
+ 2013-09-07 | 173712    | OMEGA-3
+ 2013-09-07 | 173712    | VITAMIN B-12
+ 2013-09-07 | 173712    | Prevagen
+ 2013-09-07 | 173712    | Biotin
+(24 rows)
+
+     terms      | term_count 
+----------------+------------
+ OVARIAN CANCER |      20227
+ ALOPECIA       |       6986
+ DIARRHOEA      |       6610
+(3 rows)
+
+ report_id | patient_age |                                  product                                  | product_code | age | age_units 
+-----------+-------------+---------------------------------------------------------------------------+--------------+-----+-----------
+ 189355    |           1 | ROUNDY'S LARGE GRADE A ORGANIC BROWN EGGS                                 | 15           |   1 | day(s)
+ 190179    |           1 | FLINTSTONES PLUS OMEGA 3 DHA GUMMIES (MULTIVITAMINS, OMEGA-3 FATTY ACIDS) | 54           |   1 | day(s)
+ 198453    |           1 | FLINTSTONES COMPLETE (MULTIVITAMINS + MINERALS) CHEWABLE TABLET           | 54           |   1 | day(s)
+(3 rows)
+
+DROP INDEX
+CREATE INDEX
+                                                  QUERY PLAN                                                  
+--------------------------------------------------------------------------------------------------------------
+ Limit  (cost=5912.07..5912.08 rows=3 width=22)
+   ->  Sort  (cost=5912.07..5916.80 rows=1894 width=22)
+         Sort Key: (count(terms)) DESC
+         ->  Finalize HashAggregate  (cost=5868.65..5887.59 rows=1894 width=22)
+               Group Key: terms
+               ->  Gather  (cost=5650.84..5859.18 rows=1894 width=22)
+                     Workers Planned: 1
+                     ->  Partial HashAggregate  (cost=4650.84..4669.78 rows=1894 width=22)
+                           Group Key: terms
+                           ->  Parallel Seq Scan on symptoms_table  (cost=0.00..3948.89 rows=140389 width=14)
+(10 rows)
+
+                                                                          QUERY PLAN                                                                          
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=5912.07..5912.08 rows=3 width=22) (actual time=183.727..183.728 rows=3 loops=1)
+   ->  Sort  (cost=5912.07..5916.80 rows=1894 width=22) (actual time=183.726..183.727 rows=3 loops=1)
+         Sort Key: (count(terms)) DESC
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  Finalize HashAggregate  (cost=5868.65..5887.59 rows=1894 width=22) (actual time=180.927..182.468 rows=3444 loops=1)
+               Group Key: terms
+               ->  Gather  (cost=5650.84..5859.18 rows=1894 width=22) (actual time=171.061..187.980 rows=5240 loops=1)
+                     Workers Planned: 1
+                     Workers Launched: 1
+                     ->  Partial HashAggregate  (cost=4650.84..4669.78 rows=1894 width=22) (actual time=140.108..141.290 rows=2620 loops=2)
+                           Group Key: terms
+                           ->  Parallel Seq Scan on symptoms_table  (cost=0.00..3948.89 rows=140389 width=14) (actual time=0.020..36.636 rows=119331 loops=2)
+ Planning Time: 0.104 ms
+ Execution Time: 196.216 ms
+(14 rows)
+
+DROP VIEW
+CREATE VIEW
+                       outcomes                       | caers_event_id |                             product                             
+------------------------------------------------------+----------------+-----------------------------------------------------------------
+ Other Outcome                                        |              1 | DANNON DANNON LITE & FIT GREEK YOGURT CHERRY
+ Other Outcome                                        |              2 | SAVORITZ ORIGINAL BUTTERY ROUND CRACKERS
+ Other Outcome                                        |              3 | WELCH'S 100% GRAPE JUICE, FROM CONCENTRATE WITH ADDED VITAMIN C
+ Other Outcome                                        |              4 | WELCH'S 100% GRAPE JUICE, FROM CONCENTRATE WITH ADDED VITAMIN C
+ Other Outcome                                        |              5 | WELCH'S 100% GRAPE JUICE, FROM CONCENTRATE WITH ADDED VITAMIN C
+ Hospitalization, Patient Visited Healthcare Provider |              6 | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED
+ Hospitalization, Patient Visited Healthcare Provider |              7 | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED
+ Hospitalization, Patient Visited Healthcare Provider |              8 | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED
+ Hospitalization, Patient Visited Healthcare Provider |              9 | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED
+ Hospitalization, Patient Visited Healthcare Provider |             10 | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED
+(10 rows)
+
+ num_rows 
+----------
+    80024
+(1 row)
+

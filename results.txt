@@ -1,0 +1,104 @@
+                                              Table "public.staging_caers_events"
+     Column     |          Type          | Collation | Nullable |                           Default                            
+----------------+------------------------+-----------+----------+--------------------------------------------------------------
+ caers_event_id | integer                |           | not null | nextval('staging_caers_events_caers_event_id_seq'::regclass)
+ report_id      | character varying(255) |           |          | 
+ created_date   | date                   |           |          | 
+ event_date     | date                   |           |          | 
+ product_type   | text                   |           |          | 
+ product        | text                   |           |          | 
+ product_code   | text                   |           |          | 
+ description    | text                   |           |          | 
+ patient_age    | integer                |           |          | 
+ age_units      | character varying(255) |           |          | 
+ sex            | character varying(255) |           |          | 
+ terms          | text                   |           |          | 
+ outcomes       | text                   |           |          | 
+Indexes:
+    "staging_caers_events_pkey" PRIMARY KEY, btree (caers_event_id)
+
+ unique_id | caers_event_rows 
+-----------+------------------
+     46198 |            80024
+(1 row)
+
+ product_code |                  description                  | description_count 
+--------------+-----------------------------------------------+-------------------
+ 20           |  Fruit/Fruit Prod                             |               368
+ 12           |  Cheese/Cheese Prod                           |               154
+ 29           |  Soft Drink/Water                             |               812
+ 41           |  Dietary Conventional Foods/Meal Replacements |               748
+ 18           |  Vegetable Protein Prod                       |                29
+ 53           |  Cosmetics                                    |             31561
+ 45           |  Food Additives (Human Use)                   |               197
+ 40P          | P Powder Formula                              |                22
+ 22           |  Fruit/Fruit Prod                             |               117
+ 30           |  Beverage Bases/Conc/Nectar                   |                49
+(10 rows)
+
+ created_date_count | report_id_count 
+--------------------+-----------------
+              80024 |           80024
+(1 row)
+
+ created_date | report_id 
+--------------+-----------
+ 2014-01-01   | 172940
+ 2014-01-01   | 172945
+ 2014-01-01   | 172944
+ 2014-01-01   | 172937
+ 2014-01-01   | 172934
+ 2014-01-01   | 172939
+ 2014-01-01   | 172941
+ 2014-01-02   | 172947
+ 2014-01-02   | 172960
+ 2014-01-02   | 172947
+(10 rows)
+
+ null_dates 
+------------
+          0
+(1 row)
+
+                              product                              |                  description                  
+-------------------------------------------------------------------+-----------------------------------------------
+                                                                   | 
+ PROFESSIONAL STYLER GEL ARAGON OIL                                |  Cosmetics
+ SLIMFAST MEAL REPLACEMENT BEVERAGE                                |  Dietary Conventional Foods/Meal Replacements
+ SPRING VALLEY CHROMIUM PICOLINATE                                 |  Vit/Min/Prot/Unconv Diet(Human/Animal)
+ THE BREAD GUY CRANBERRY WALNUT LOAF                               |  Bakery Prod/Dough/Mix/Icing
+ PROCERA AVH 1515MG                                                |  Vit/Min/Prot/Unconv Diet(Human/Animal)
+ PURITANS PRIDE POTASSIUM 99 MG CAPLETS(DIETARY SUPPLEMENT) CAPLET |  Vit/Min/Prot/Unconv Diet(Human/Animal)
+ WINCO FOOD SRAW PINE NUTS, BULK                                   |  Nuts/Edible Seed
+ Bacon Ranch Salad with Crispy Chicken                             |  Vegetables/Vegetable Products
+ NATUREMADE VITAMIN B 12                                           |  Vit/Min/Prot/Unconv Diet(Human/Animal)
+(10 rows)
+
+ unique_created_data | created_date 
+---------------------+--------------
+                1641 |        80024
+(1 row)
+
+ event_date | patient_age | age_units | sex 
+------------+-------------+-----------+-----
+            |             |           | 
+            |             |           | 
+            |             |           | 
+            |             |           | 
+ 2013-12-05 |             |           | 
+            |             |           | 
+ 2013-12-16 |             |           | 
+            |          64 | year(s)   | F
+            |             |           | 
+            |          64 | year(s)   | F
+(10 rows)
+
+ caers_event_id | report_id | created_date | event_date | product_type |                             product                             | product_code |         description          | patient_age | age_units | sex |                                  terms                                  |                       outcomes                       
+----------------+-----------+--------------+------------+--------------+-----------------------------------------------------------------+--------------+------------------------------+-------------+-----------+-----+-------------------------------------------------------------------------+------------------------------------------------------
+              1 | 172940    | 2014-01-01   |            | SUSPECT      | DANNON DANNON LITE & FIT GREEK YOGURT CHERRY                    | 09           |  Milk/Butter/Dried Milk Prod |             |           |     | NAUSEA                                                                  | Other Outcome
+              2 | 172945    | 2014-01-01   |            | SUSPECT      | SAVORITZ ORIGINAL BUTTERY ROUND CRACKERS                        | 03           |  Bakery Prod/Dough/Mix/Icing |             |           |     | VOMITING                                                                | Other Outcome
+              3 | 172944    | 2014-01-01   |            | SUSPECT      | WELCH'S 100% GRAPE JUICE, FROM CONCENTRATE WITH ADDED VITAMIN C | 20           |  Fruit/Fruit Prod            |             |           |     | SLEEP DISORDER, SALIVARY GLAND DISORDER, ANXIETY                        | Other Outcome
+              4 | 172937    | 2014-01-01   |            | SUSPECT      | DAVID'S SUNFLOWER SEEDS, RANCH FLAVORED                         | 23           |  Nuts/Edible Seed            |             |           |     | TENDERNESS, PAIN, MUCOSAL ULCERATION, CAUSTIC INJURY, BURNING SENSATION | Hospitalization, Patient Visited Healthcare Provider
+              5 | 172934    | 2014-01-01   | 2013-12-05 | SUSPECT      | VALUED NATIONAL PINE NUTS                                       | 23           |  Nuts/Edible Seed            |             |           |     | HYPERSENSITIVITY, DYSGEUSIA                                             | Other Outcome
+(5 rows)
+
